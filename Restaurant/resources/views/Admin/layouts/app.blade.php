@@ -145,22 +145,39 @@
                             </ul>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa-solid fa-barcode"></i>
+                            <a href="{{ route('admin.customer.index') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-user"></i>
                                 <p>
-                                    Mã Giảm Giá
+                                    Khách Hàng
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item has-treeview">
+                            <a href="{{ route('admin.contact.index') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-address-book"></i>
+                                <p>
+                                    Liên Hệ
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-header">QUẢN LÝ BÁN HÀNG</li>
+                        <li class="nav-item has-treeview">
+                            <a href="{{ route('admin.table.index') }}" class="nav-link">
+                                <i class="nav-icon fa-solid fa-table"></i>
+                                <p>
+                                    Bàn Ăn
                                     <i class="right fas fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('admin.table.index') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Danh Sách</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{ route('admin.table.create') }}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Thêm Mới</p>
                                     </a>
@@ -169,32 +186,15 @@
                         </li>
                         <li class="nav-item has-treeview">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fa-solid fa-address-book"></i>
-                                <p>
-                                    Liên Hệ
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-header">QUẢN LÝ ĐƠN HÀNG</li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
                                 <i class="nav-icon fa-solid fa-cart-shopping"></i>
                                 <p>
                                     Đơn Hàng
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fa-solid fa-user"></i>
-                                <p>
-                                    Khách Hàng
-                                </p>
-                            </a>
-                        </li>
                         <li class="nav-header">CÀI ĐẶT CHUNG</li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.config.index') }}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-gear"></i>
                                 <p>
                                     Cấu Hình
@@ -202,7 +202,7 @@
                             </a>
                         </li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="" class="nav-link">
                                 <i class="nav-icon fa-solid fa-image"></i>
                                 <p>
                                     Giao Diện
@@ -226,7 +226,7 @@
                         </li>
                         <li class="nav-header">CÁ NHÂN</li>
                         <li class="nav-item has-treeview">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('admin.profile.index') }}" class="nav-link">
                                 <i class="nav-icon fa-solid fa-lock"></i>
                                 <p>
                                     Đổi Thông Tin

@@ -7,6 +7,11 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\FoodController;
+use App\Http\Controllers\Admin\TableController;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\ConfigController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -45,5 +50,29 @@ Route::prefix('admin')->group(function () {
             'update' => 'admin.news.update',
             'destroy' => 'admin.news.destroy',
         ]);
+
+        Route::get('/table/status/{id}', [TableController::class, 'status'])->name('admin.table.status');
+        Route::resource('/table', TableController::class)->names([
+            'index' => 'admin.table.index',
+            'create' => 'admin.table.create',
+            'store' => 'admin.table.store',
+            'show' => 'admin.table.show',
+            'edit' => 'admin.table.edit',
+            'update' => 'admin.table.update',
+            'destroy' => 'admin.table.destroy',
+        ]);
+
+        Route::get('/customer', [CustomerController::class, 'index'])->name('admin.customer.index');
+        Route::get('/customer/block/{id}', [CustomerController::class, 'show'])->name('admin.customer.block');
+        Route::post('/customer/block/{id}', [CustomerController::class, 'block'])->name('admin.customer.block.submit');
+
+        Route::get('/contact', [ContactController::class, 'index'])->name('admin.contact.index');
+        Route::get('/contact/view/{id}', [ContactController::class, 'view'])->name('admin.contact.view');
+        
+        Route::get('profile', [ProfileController::class, 'index'])->name('admin.profile.index');
+        Route::post('profile/update', [ProfileController::class, 'update'])->name('admin.profile.update');
+        
+        Route::get('/config', [ConfigController::class, 'index'])->name('admin.config.index');
+        Route::post('/config/update', [ConfigController::class, 'update'])->name('admin.config.update');
     });
 });

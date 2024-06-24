@@ -1,16 +1,16 @@
 @extends('Admin.layouts.app')
-@section('title', 'Danh sách tin tức')
+@section('title', 'Danh sách khách hàng')
 @section('content')
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Quản Lý Tin Tức</h1>
+                <h1>Quản Lý Khách Hàng</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Trang Chủ</a></li>
-                    <li class="breadcrumb-item active">Quản Lý Tin Tức</li>
+                    <li class="breadcrumb-item active">Quản Lý Khách Hàng</li>
                 </ol>
             </div>
         </div>
@@ -30,45 +30,41 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Hình Ảnh</th>
-                                    <th style="width: 200px;">Tiêu Đề</th>
-                                    <th>Chuyên Mục</th>
-                                    <th style="width: 150px;">Đường Dẫn</th>
-                                    <th>Hành Động</th>
+                                    <th>Tên Khách Hàng</th>
+                                    <th>Email</th>
+                                    <th>Số Điện Thoại</th>
+                                    <th>Trạng Thái</th>
+                                    <th>Cấm Khách Hàng</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($news as $key => $post)
+                                @foreach ($users as $key => $user)
                                     <tr>
                                         <td>
                                             {{ $key + 1 }}
                                         </td>
                                         <td>
-                                            <img style="width: 150px; height: 150px" src="{{ asset('storage/' . $post->image) }}">
+                                            {{ $user->name }}
                                         </td>
                                         <td>
-                                            {{ $post->name }}
+                                            {{ $user->email }}
                                         </td>
                                         <td>
-                                            <a href=""
-                                                target="_blank">
-                                                {{ $post->category->name }}
-                                            </a>
+                                            {{ $user->phone }}
                                         </td>
                                         <td>
-                                            <a href="#">{{ $post->slug }}</a>
-                                        </td> 
+                                            {{ $user->status == 0 ? "Đang Bị Cấm" : "Đang Hoạt Động" }}
+                                        </td>
                                         <td class="d-flex">
-                                            <a href="{{ route('admin.news.edit', $post->id) }}" class="btn btn-primary mr-2">
-                                                <i class="fas fa-edit"></i> <span>SỬA</span>
-                                            </a>
-                                            <form id="delete-form-{{ $post->id }}" action="{{ route('admin.news.destroy', ['news' => $post->id]) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa tin tức này?')">
-                                                    <i class="fas fa-trash"></i> XÓA
-                                                </button>
-                                            </form>
+                                            @if ($user->status == 1)
+                                                <a href="{{ route('admin.customer.block', $user->id) }}" class="btn btn-danger">
+                                                    <i class="fa-solid fa-ban"></i> <span>CẤM KHÁCH HÀNG</span>
+                                                </a>  
+                                            @else
+                                                <a href="{{ route('admin.customer.block', $user->id) }}" class="btn btn-primary">
+                                                    <i class="fa-solid fa-ban"></i> <span>ĐƯỢC HOẠT ĐỘNG</span>
+                                                </a>  
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -80,7 +76,7 @@
                             @for ($i = 1; $i <= $totalPages; $i++)
                                 <li class="page-item">
                                     <a class="page-link"
-                                        href="{{ route('admin.news.index', ['page' => $i]) }}">
+                                        href="{{ route('admin.customer.index', ['page' => $i]) }}">
                                         {{ $i }}
                                     </a>
                                 </li>
