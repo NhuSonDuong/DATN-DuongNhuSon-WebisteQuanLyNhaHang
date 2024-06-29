@@ -14,6 +14,8 @@ class FoodController extends Controller
 
     public function index()
     {
+        //Lấy danh sách các món ăn cùng với thông tin danh mục của chúng
+        //eager load để không thực hiện truy vấn nhiều
         $foods = Food::with('category')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
@@ -124,7 +126,7 @@ class FoodController extends Controller
             'quantity' => 'required|integer|min:1',
             'sale' => 'required|numeric|min:0', // Giá gốc
             'price' => 'required|numeric|min:0', // Giá bán
-            'slug' => 'required|string|max:255|unique:food,slug,' . $id, // Chú ý sửa tên bảng ở đây
+            'slug' => 'required|string|max:255|unique:food,slug,' . $id, // Chú ý sửa tên bảng 
             'category_id' => 'required|exists:categories,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], [
@@ -158,11 +160,11 @@ class FoodController extends Controller
     
             // Xử lý upload file image nếu có
             if ($request->hasFile('image')) {
-                // Xóa ảnh cũ nếu có
+                // Nếu có ảnh mới thì xóa ảnh cũ
                 if ($food->image && Storage::disk('public')->exists($food->image)) {
                     Storage::disk('public')->delete($food->image);
                 }
-    
+                //Lưu ảnh trong thư mục app/public/food
                 $imagePath = $request->file('image')->store('food', 'public');
                 $validatedData['image'] = $imagePath;
             }

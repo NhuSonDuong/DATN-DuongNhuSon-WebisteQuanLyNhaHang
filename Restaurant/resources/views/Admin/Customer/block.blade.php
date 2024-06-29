@@ -53,6 +53,7 @@
                                 <label for="ten">Trạng Thái</label>
                                 <input type="text" class="form-control"
                                     name="status" value="{{ $user->status == 0 ? "Đang Bị Cấm" : "Đang Hoạt Động" }}" disabled>
+                                    {{-- dùng disbale để input k thể sửa --}}
                             </div>
                         </div>
                     </div>

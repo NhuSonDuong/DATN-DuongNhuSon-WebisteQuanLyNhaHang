@@ -17,6 +17,7 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    // định nghĩa thuộc tính được gán giá trị
     protected $fillable = [
         'name',
         'email',

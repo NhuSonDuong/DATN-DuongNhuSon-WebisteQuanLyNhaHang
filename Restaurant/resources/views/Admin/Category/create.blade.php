@@ -25,7 +25,8 @@
         <div class="card card-default">
             <!-- /.card-header -->
             <div class="card-body">
-                <form method="post" action="{{ route('admin.category.store') }}" enctype="multipart/form-data">
+                {{-- multipart/form-data: Thuộc tính này cho phép form gửi các tệp tin (file) cùng với dữ liệu form. --}}
+                <form method="post" action="{{ route('admin.category.store') }}" enctype="multipart/form-data"> 
                     @csrf
                     <div class="row">
                         <div class="col-md-12">

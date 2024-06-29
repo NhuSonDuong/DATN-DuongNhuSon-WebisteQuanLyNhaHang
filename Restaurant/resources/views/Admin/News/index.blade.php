@@ -31,7 +31,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Hình Ảnh</th>
-                                    <th style="width: 200px;">Tiêu Đề</th>
+                                    <th style="width: 250px;">Tiêu Đề</th>
                                     <th>Chuyên Mục</th>
                                     <th style="width: 150px;">Đường Dẫn</th>
                                     <th>Hành Động</th>

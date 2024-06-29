@@ -69,6 +69,7 @@
                                         </td>
                                         <td>
                                             <a href=""
+                                            {{-- dùng blank để mở liên kết trong thẻ a --}}
                                                 target="_blank">
                                                 {{ $food->slug }}
                                             </a>

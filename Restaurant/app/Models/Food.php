@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Food extends Model
 {
     use HasFactory;
-
+    //Các trường trong csdl được gắn giá trị
     protected $fillable = [
         'name',
         'description',
@@ -21,7 +21,7 @@ class Food extends Model
     ];
 
     protected $table = 'food';
-
+    //  định nghĩa mối quan hệ food thuộc về category
     public function category(){
         return $this->belongsTo(Category::class);
     }

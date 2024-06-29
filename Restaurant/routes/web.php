@@ -21,7 +21,7 @@ Route::prefix('admin')->group(function () {
     Route::get('login', [LoginController::class, 'index'])->name('admin.login')->middleware('notadmin');
     Route::post('login', [LoginController::class, 'login'])->name('admin.login.submit')->middleware('notadmin');
     Route::get('logout', [LogoutController::class, 'index'])->name('admin.logout')->middleware('admin');
-    Route::middleware('admin')->group(function () {
+    Route::middleware('admin')->group(function () {// khi người dùng đăng nhập với role admin thì mới sử dụng được route
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
         Route::resource('/category', CategoryController::class)->names([
             'index' => 'admin.category.index',

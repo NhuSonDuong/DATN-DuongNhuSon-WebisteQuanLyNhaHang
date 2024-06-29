@@ -29,7 +29,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="ten">Tiêu Đề Tin</label>
+                                <label for="ten">Tiêu Đề Tin Tức</label>
                                 <input type="text" class="form-control tenchinh" id="ten" placeholder="Tiêu đề tin tức"
                                     name="name">
                             </div>

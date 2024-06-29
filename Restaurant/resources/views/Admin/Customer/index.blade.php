@@ -56,6 +56,7 @@
                                             {{ $user->status == 0 ? "Đang Bị Cấm" : "Đang Hoạt Động" }}
                                         </td>
                                         <td class="d-flex">
+                                            {{-- nếu status = 1 thì có nút màu đỏ với tham số id, còn = 0 thì nút màu xanh --}}
                                             @if ($user->status == 1)
                                                 <a href="{{ route('admin.customer.block', $user->id) }}" class="btn btn-danger">
                                                     <i class="fa-solid fa-ban"></i> <span>CẤM KHÁCH HÀNG</span>

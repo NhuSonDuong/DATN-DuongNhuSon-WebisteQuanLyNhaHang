@@ -34,7 +34,7 @@ class LoginController extends Controller
                 // Đăng nhập thành công và có role là 1
                 return redirect()->intended('/admin');
             } else {
-                Auth::logout();
+                Auth::logout();//nếu không phải role 1 thì sẽ đăng xuất về trang login
                 return redirect()->route('admin.login')->withErrors(['error' => 'Bạn không có quyền truy cập trang quản trị.']);
             }
         }

@@ -64,7 +64,7 @@
                                                 <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn có chắc chắn muốn xóa chuyên mục này?')">
                                                     <i class="fas fa-trash"></i> XÓA
                                                 </button>
-                                            </form>
+                                            </form> <!-- dùng post để gửi dữ liệu cập nhập lại -->
                                         </td>
                                     </tr>
                                 @endforeach
@@ -72,8 +72,8 @@
                         </table>
                     </div>
                     <div class="card-footer clearfix">
-                        <ul class="pagination pagination-sm m-0 float-right">
-                            @for ($i = 1; $i <= $totalPages; $i++)
+                        <ul class="pagination pagination-sm m-0 float-right"> 
+                            @for ($i = 1; $i <= $totalPages; $i++) 
                                 <li class="page-item">
                                     <a class="page-link"
                                         href="{{ route('admin.category.index', ['page' => $i]) }}">

@@ -10,9 +10,9 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::orderBy('created_at', 'desc')->paginate(10);
+        $categories = Category::orderBy('created_at', 'desc')->paginate(10);// truy vấn CSDL trong model theo thời gian tạo, giảm dần, mỗi trang hiển thị 10 danh muc
         $totalPages = $categories->lastPage(); // Lấy tổng số trang
-        return view('Admin/Category/index', compact('categories', 'totalPages'));
+        return view('Admin/Category/index', compact('categories', 'totalPages')); //dữ liệu truyền sang view gồm 2 biến trong compact
     }
 
     public function create()
@@ -46,8 +46,8 @@ class CategoryController extends Controller
 
         // Xử lý upload file image nếu có
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('categories', 'public');
-            $validatedData['image'] = $imagePath;
+            $imagePath = $request->file('image')->store('categories', 'public'); //nếu là image thì lưu vào categories, công khai public disk
+            $validatedData['image'] = $imagePath; //Lưu trữ đg dẫn vào mảng validatedata
         }
 
         // Tạo mới Category
@@ -83,6 +83,7 @@ class CategoryController extends Controller
             // Ví dụ: redirect về danh sách category với thông báo lỗi
             return redirect()->route('admin.category.index')->with('error', 'Không tìm thấy chuyên mục!');
         }
+        //khi nào tìm thấy category thì mới tiếp tục
     }
 
     /**
@@ -97,7 +98,7 @@ class CategoryController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'slug' => 'required|string|max:255|unique:categories,slug,' . $id,
+            'slug' => 'required|string|max:255|unique:categories,slug,' . $id, // có thẻ giữu nguyên đường dẫn
         ], [
             'name.required' => 'Tên là bắt buộc.',
             'name.string' => 'Tên phải là chuỗi.',
@@ -122,7 +123,7 @@ class CategoryController extends Controller
             $imagePath = $request->file('image')->store('categories', 'public');
             $category->image = $imagePath;
         }
-
+        // cập nhập thông tin đường dẫn
         $category->slug = $validatedData['slug'];
 
         // Lưu thay đổi vào CSDL

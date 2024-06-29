@@ -39,6 +39,7 @@
                             <div class="form-group">
                                 <label for="ten">Chuyên Mục</label>
                                 <select name="category_id" id="" class="form-control">
+                                    {{-- Kiểm tra chuyên mục hiện tại có trùng với chuyên mục món ăn không --}}
                                     @foreach ($categories as $category)
                                         @if($category->id == $food->category_id)
                                             <option value="{{ $category->id }}" selected>{{ $category->name }}</option>
